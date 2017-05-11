@@ -1,0 +1,23 @@
+<hr>
+<div class="content-wrapper">
+<h1>
+  {{title}}
+</h1>
+
+
+
+<div class="input-group">
+                <input type="file" id="file" name="file" placeholder="select file" (change)="fileChangeEvent($event)">
+
+                <input type="submit" value="upload" (click)="upload()" class="btn btn-primary">
+                
+        </div>
+
+
+
+<strong>{{text}}{{badRequest}}</strong>
+    <!--<div *ngIf="response">
+    <div class="alert alert-success" role="alert">
+    <strong>{{response.myResponseObjectProperty | number}}</strong>
+    </div>
+    </div>-->

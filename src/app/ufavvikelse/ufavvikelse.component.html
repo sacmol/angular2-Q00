@@ -1,0 +1,30 @@
+<div *ngIf="ufavvikelse">
+  <h1>UF</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fmid</th>
+    <th>Pnr</th>
+    <th>Försäkr-id</th>
+    <th>Felutfall</th>
+    <th>Ing kap</th>
+    <th>Utg kap</th>
+    <th>Gar pension</th>
+    <th>Aterbäring</th>
+  </tr>
+  <tr>
+    <td>{{ufavvikelse.fmId}}</td>
+    <td>{{ufavvikelse.personnummer}}</td>
+    <td>{{ufavvikelse.avtalsNummer}}</td>
+    <td>{{ufavvikelse.felutfall}}</td>
+    <td>{{ufavvikelse.ingkap}}</td>
+    <td>{{ufavvikelse.utgKap}}</td>
+    <td>{{ufavvikelse.garPension}}</td>
+    <td>{{ufavvikelse.aterBarpension}}</td>
+  </tr>
+
+
+</table>
+
+
+</div>

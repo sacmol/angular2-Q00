@@ -1,0 +1,52 @@
+
+<div>
+  <h1>
+  {{title}}
+</h1>
+<section>
+
+<table class="table table-condensed">
+    <tr>
+    <td>Bolag:</td><td><select class="form-control" [(ngModel)]="selectedBol">
+        <option *ngFor="let b of bolag" [ngValue]="b">{{b.name}}</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Avstämningsperiod:</td><td><input type="text" class="form-control" placeholder="period" [(ngModel)]="period"/></td>
+  </tr>
+ 
+    <tr>
+    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="pnr" [(ngModel)]="pnr"/></td>
+  </tr>
+    <tr>
+    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" [(ngModel)]="fmid" /></td>
+  </tr>
+</table>
+<input type="submit" value="Sök" (click)="search(period,pnr,fmid,selectedBol)" class="btn btn-primary">
+
+
+<div *ngIf="ufavvikelser">
+  <h4>Svar Från DB ufav</h4>
+<table class="table table-striped">
+  <tr> 
+    <th>FmId</th>
+    <th>Pnr</th> 
+    <th>Försäk Id</th>
+    <th>Ing kap</th> 
+    <th>Status</th>   
+    <th>Notering</th> 
+</tr>
+<tr *ngFor="let u of ufavvikelser; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" (click)="onSelect(u)" [class.selected]="u === ufavikelse" >
+
+ <td>{{u.fmId}}</td>
+ <td>{{u.personnummer}}</td>
+ <td>{{u.avtalsNummer}}</td>
+ <td>{{u.ingkap}}</td>
+ <td>{{u.status}}</td>
+ <td>{{ (u.notering) ? u.notering.fel : 'finns ej'}}</td>
+
+</tr>
+</table>
+</div>
+</section>
+</div>

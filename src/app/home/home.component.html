@@ -1,0 +1,28 @@
+<div >
+
+<h2>Ladda upp filen</h2>
+
+
+<hr>
+<div class="content-wrapper">
+<h1>
+  {{title}}
+</h1>
+
+
+
+<div class="input-group">
+                <input type="file" id="file" name="file" placeholder="select file" (change)="fileChangeEvent($event)">
+
+                <input type="submit" value="upload" (click)="upload()" class="btn btn-primary">
+                
+        </div>
+
+
+
+<strong>{{text}}{{badRequest}}</strong>
+
+
+
+</div>
+</div>

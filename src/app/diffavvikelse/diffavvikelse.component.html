@@ -1,0 +1,38 @@
+
+<div *ngIf="diffavvikelse" >
+<h1>Diffavvikelse</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fmid</th>
+    <th>Bolag</th>
+    <th>Pnr</th>
+    <th>Avtalsområde</th>
+    <th>Produkt</th>
+    <th>Kategori</th>
+    <th>Ansvarig</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>{{diffavvikelse.fmId}}</td>
+    <td>{{diffavvikelse.bolag}}</td>
+    <td>{{diffavvikelse.personnummer}}</td>
+    <td>{{diffavvikelse.avtalsOmrade}}</td>
+    <td>{{diffavvikelse.produkt}}</td>
+    <td>{{diffavvikelse.kategori}}</td>
+    <td>{{diffavvikelse.ansvarig}}</td>
+    <td>{{diffavvikelse.status}}</td>
+  </tr>
+
+
+</table>
+
+<h3>Notering</h3>
+<textarea rows="10" cols="60">
+ 
+ {{ (diffavvikelse.notering) ? diffavvikelse.notering.text : ''}}
+</textarea>
+<p><input type="submit" value="Skapa/Editera"  class="btn btn-primary"></p>
+</div>
+
+

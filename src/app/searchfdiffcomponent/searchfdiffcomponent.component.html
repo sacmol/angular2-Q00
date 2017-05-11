@@ -1,0 +1,104 @@
+<hr>
+<div >
+<h1>
+  {{title}}
+</h1>
+
+<section>
+  
+<table class="table table-condensed">
+    <tr>
+    <td>Bolag:</td><td><select class="form-control" [(ngModel)]="selectedBol">
+        <option *ngFor="let b of bolag" [ngValue]="b">{{b.name}}</option>
+    </select></td>
+  </tr>
+    <tr>
+    <td>Avvikelsetyp:</td><td><select class="form-control" [(ngModel)]="selectedVal">
+        <option *ngFor="let at of avvikelseTyp" [value]="at">{{at}}</option>
+    </select></td>
+  </tr>
+
+ 
+  <tr>
+    <td>Avstämningsperiod:</td><td><input type="text" class="form-control" placeholder="period" [(ngModel)]="perioden"/></td>
+  </tr>
+ 
+    <tr>
+    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="pnr" [(ngModel)]="pnr"/></td>
+  </tr>
+    <tr>
+    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" [(ngModel)]="fmid" /></td>
+  </tr>
+</table>
+<input type="submit" value="Sök" (click)="search(perioden,pnr,fmid,selectedVal,selectedBol)" class="btn btn-primary">
+<!--<input type="submit" value="Sök" (click)="search()" class="btn btn-primary">-->
+{{testData}}
+
+<br/>
+<div *ngIf="avikIsValid">
+<h4>Svar Från DB</h4>
+
+<table class="table table-striped">
+  <tr> 
+    <th>FmId</th>
+    <th>Pnr</th> 
+    <th>Avtalsområde</th>
+    <th>Produkt</th> 
+    <th>DiffTyp</th> 
+    <th>Attr Ex</th>
+    <th>Attr Va</th>
+    <th>Premie Diff</th>
+    <th>Premie Tot</th>
+    <th>Kategori</th>
+    <th>Ansvarig</th>
+    <th>Status</th>   
+    <th>Notering</th> 
+</tr>
+<tr *ngFor="let d of aviks ; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" (click)="onSelect(d)" [class.selected]="d === avik">
+
+ <td>{{d.fmId}}</td>
+ <td>{{d.personnummer}}</td>
+ <td>{{d.avtalsOmrade}}</td>
+ <td>{{d.produkt}}</td>
+ <td>{{d.differensTyp}}</td>
+ <td>{{d.attrExtern}}</td>
+ <td>{{d.attrVarde}}</td>
+ <td>{{d.premieDiff}}</td>
+ <td>{{d.premieDiffTo}}</td>
+ <td>{{d.kategori}}</td>
+ <td>{{d.ansvarig}}</td>
+ <td>{{d.status}}</td>
+ <td>{{ (d.notering) ? d.notering.noteringid : 'finns ej'}}</td>
+ <!--<td *ngIf="!d.notering.fel">default</td>
+ <td *ngIf="d && d.notering.fel">{{d.notering.fel}}</td>-->
+ 
+  <!--<td>{{d.notering.fel}}</td>-->
+</tr>
+</table>
+</div>
+
+<div *ngIf="ufIsValid">
+  <h4>Svar Från DB uf</h4>
+<table class="table table-striped">
+  <tr> 
+    <th>FmId</th>
+    <th>Pnr</th> 
+    <th>Försäk Id</th>
+    <th>Ing kap</th> 
+    <th>Status</th>   
+    <th>Notering</th> 
+</tr>
+<tr *ngFor="let u of ufaviks; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" >
+
+ <td>{{u.fmId}}</td>
+ <td>{{u.personnummer}}</td>
+ <td>{{u.avtalsNummer}}</td>
+ <td>{{u.ingkap}}</td>
+ <td>{{u.status}}</td>
+ <td>{{ (u.notering) ? u.notering.fel : 'finns ej'}}</td>
+
+</tr>
+</table>
+</div>
+</section>
+</div>
