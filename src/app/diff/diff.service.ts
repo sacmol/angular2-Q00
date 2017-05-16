@@ -51,7 +51,7 @@ export class DiffService{
 
     }
      private extractData(res: Response) {
-         let body = res.json();
+         let body = res.json();console.log('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');  
          return body.data || { };
   }
     getTest(){
@@ -102,6 +102,37 @@ export class DiffService{
             return this._http.get(url).toPromise()
             .then(response => response.json() as Ufavik)
             .catch(this.errorHandler);
+        }
+
+private headers = new Headers({'Content-Type': 'application/json','Access-Control-Allow-Origin':'*'});
+
+
+
+        uppdateraDiff(diffavvikelse: Avik): Promise<Avik>{
+
+            console.log('i uppdatera service');
+            let headers = new Headers({'content-type': 'application/json', 'accept': 'application/json','Access-Control-Allow-Origin':'*'});
+            this.headers.append('Content-Type', 'application/json');
+            this.headers.append('Access-Control-Allow-Origin', '*');
+            let options = new RequestOptions({ headers: headers });
+            let bodystring = JSON.stringify(diffavvikelse);
+            console.log(bodystring)
+            console.log(headers);
+
+            //   let url = `${this._apiUrl2}/update/${1}`;
+            // let url = `${this._apiUrl2}/delete/${1}`;
+
+        //     return this._http.put(this._apiUrl2+'/delete',body,options)
+        //      .map((response: Response) => response.json())
+        // .catch(this.errorHandler);
+        
+         return this._http
+    .put(this._apiUrl2+'/update', bodystring, options)
+    .toPromise()
+    .then( response => response.json() as Avik)
+    .catch(this.errorHandler);
+
+
         }
 }
 

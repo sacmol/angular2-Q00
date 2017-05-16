@@ -9,6 +9,11 @@
     <th>Pnr</th>
     <th>Avtalsområde</th>
     <th>Produkt</th>
+    <th>Diff Typ</th>
+    <th>Attr ext</th>
+    <th>Attr värde</th>
+    <th>Premie diff</th>
+    <th>Premie diff tot</th>
     <th>Kategori</th>
     <th>Ansvarig</th>
     <th>Status</th>
@@ -19,20 +24,39 @@
     <td>{{diffavvikelse.personnummer}}</td>
     <td>{{diffavvikelse.avtalsOmrade}}</td>
     <td>{{diffavvikelse.produkt}}</td>
-    <td>{{diffavvikelse.kategori}}</td>
-    <td>{{diffavvikelse.ansvarig}}</td>
-    <td>{{diffavvikelse.status}}</td>
+    <td>{{diffavvikelse.differensTyp}}</td>
+    <td>{{diffavvikelse.attrExtern}}</td>
+    <td>{{diffavvikelse.attrVarde}}</td>
+    <td>{{diffavvikelse.premieDiff}}</td>
+    <td>{{diffavvikelse.premieDiffTo}}</td>
+    <td><input type="text" class="form-control" value="{{diffavvikelse.kategori}}"  [(ngModel)]="diffavvikelse.kategori"/></td>
+    <td><input type="text" class="form-control" value="{{diffavvikelse.ansvarig}}" [(ngModel)]="diffavvikelse.ansvarig" /></td>
+    <td><input type="text" class="form-control" value="{{diffavvikelse.status}}" [(ngModel)]="diffavvikelse.status"/></td>
   </tr>
 
 
 </table>
 
 <h3>Notering</h3>
-<textarea rows="10" cols="60">
+
+<div *ngIf="diffavvikelse.notering" >
+<textarea rows="10" cols="60" [(ngModel)]="diffavvikelse.notering.text">
  
  {{ (diffavvikelse.notering) ? diffavvikelse.notering.text : ''}}
 </textarea>
-<p><input type="submit" value="Skapa/Editera"  class="btn btn-primary"></p>
+<p><input type="submit" value="Editera" (click)="uppdaterAvvikelse(diffavvikelse.kategori,diffavvikelse.ansvarig,diffavvikelse.status,diffavvikelse.notering.text)" class="btn btn-primary"></p>
+{{svarsmeddelande}}
+</div>
+
+<div *ngIf="!diffavvikelse.notering">
+
+<textarea rows="10" cols="60" [(ngModel)]="nyNot">
+ 
+ {{ (diffavvikelse.notering) ? diffavvikelse.notering.text : ''}}
+</textarea>
+
+<p><input type="submit" value="Skapa" (click)="uppdaterAvvikelseMedNotering(diffavvikelse.kategori,diffavvikelse.ansvarig,diffavvikelse.status,nyNot)" class="btn btn-primary"></p>
+</div>
 </div>
 
 
