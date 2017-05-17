@@ -63,17 +63,25 @@ export class DiffavvikelseComponent implements OnInit {
   uppdaterAvvikelseMedNotering(kategori,ansvarig,status,notering){
 
       this.notering = {
-            noteringid: 11,
+            noteringid: null,
             period: '22',
             fmId: '22',
             personnummer: '22',
-            felLista: '22',
+            felLista: 'DIFF',
             felTyp: '22',
             text: '22'
       }
       this.notering.text = notering;
+      this.notering.fmId = this.diffavvikelse.fmId;
+      this.notering.personnummer = this.diffavvikelse.personnummer;
       this.diffavvikelse.notering = this.notering;
+      this.diffavvikelse.status = status;
+      this.diffavvikelse.kategori = kategori;
+      this.diffavvikelse.ansvarig = ansvarig;
       console.log(this.diffavvikelse);
-
+      console.log(this.notering);
+      this._diffService.uppdateraDiff(this.diffavvikelse)
+    .then(diffavvikelse => this.diffavvikelse = diffavvikelse);
+    this.svarsmeddelande = 'Skapad';
   }
 }

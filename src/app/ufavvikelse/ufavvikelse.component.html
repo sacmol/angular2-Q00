@@ -4,13 +4,21 @@
 <table class="table table-striped">
   <tr>
     <th>Fmid</th>
-    <th>Pnr</th>
+    <th>Personnummer</th>
     <th>Försäkr-id</th>
-    <th>Felutfall</th>
+    <th>Felutfallstext</th>
     <th>Ing kap</th>
     <th>Utg kap</th>
     <th>Gar pension</th>
-    <th>Aterbäring</th>
+    <th>Återbäring pension</th>
+    <th>Återbäring belopp</th>
+    <th>Kostnad /Intäkt</th>
+    <th>K/I-typ</th>
+    <th>K/I-belopp</th>
+    <th>Kategori</th>
+    <th>Ansvarig</th>
+    <th>Status</th>
+
   </tr>
   <tr>
     <td>{{ufavvikelse.fmId}}</td>
@@ -21,10 +29,28 @@
     <td>{{ufavvikelse.utgKap}}</td>
     <td>{{ufavvikelse.garPension}}</td>
     <td>{{ufavvikelse.aterBarpension}}</td>
-  </tr>
+    <td>{{ufavvikelse.aterBetbelopp}}</td>
+    <td>{{ufavvikelse.kostnadIntakt}}</td>
+    <td>{{ufavvikelse.kiTyp}}</td>
+    <td>{{ufavvikelse.kiBelopp}}</td>
+    <td><input type="text" class="form-control" value="{{ufavvikelse.kategori}}"  [(ngModel)]="ufavvikelse.kategori"/></td>
+    <td><input type="text" class="form-control" value="{{ufavvikelse.ansvarig}}"  [(ngModel)]="ufavvikelse.ansvarig"/></td>
+    <td><input type="text" class="form-control" value="{{ufavvikelse.status}}"  [(ngModel)]="ufavvikelse.status"/></td>
+ </tr>
 
-
+ 
 </table>
+
+<h3>Notering</h3> 
+<div *ngIf="ufavvikelse.notering">
+
+  <textarea rows="10" cols="60" [(ngModel)]="Textarea">
+
+
+  </textarea>
+  <p><input type="submit" value="Uppdatera" (click)="uppdaterAvvikelse(ufavvikelse.kategori,ufavvikelse.ansvarig,ufavvikelse.status,ufavvikelse.notering.text)" class="btn btn-primary"></p>
+  {{svarsmeddelande}}
+</div>
 
 
 </div>
