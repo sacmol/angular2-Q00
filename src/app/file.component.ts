@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 
 import { Observable} from 'rxjs/Rx';
 
-// const URL = 'http://localhost:9080/webapp/q00ds03i/rs/spring/api/fileupload';
+const URL = 'http://localhost:9080/webapp/q00ds03i/rs/spring/api/fileupload';
 
 @Component({
   selector: 'file-detail',
@@ -13,8 +13,8 @@ import { Observable} from 'rxjs/Rx';
 
 export class FileComponent{
 
-    host = window.location.host;
-    URL = 'http://'+this.host+'/webapp/q00ds03i/rs/spring/api/fileupload';
+    // host = window.location.host;
+    // URL = 'http://'+this.host+'/webapp/q00ds03i/rs/spring/api/fileupload';
     title = 'Ladda upp filen';
     text: string;
     responsText: string;
@@ -30,7 +30,7 @@ export class FileComponent{
 upload() {
 
     let host = window.location.host;
-        this.makeFileRequest(this.URL, [], this.filetoUpload).then((result) => {           
+        this.makeFileRequest(URL, [], this.filetoUpload).then((result) => {           
             this.response = result;            
         }, (error) => {
             console.error(error);

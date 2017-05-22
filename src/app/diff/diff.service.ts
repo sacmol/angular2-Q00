@@ -104,6 +104,13 @@ export class DiffService{
             .catch(this.errorHandler);
         }
 
+         getUFavvikelseOb(id: string): Observable<Ufavik>{
+            let url = `${this._apiUrlUF}/${id}`;
+            return this._http.get(url).
+            map((response: Response) => <Avik>response.json())
+            .catch(this.errorHandler);
+        }
+
 private headers = new Headers({'Content-Type': 'application/json','Access-Control-Allow-Origin':'*'});
 
 
@@ -119,18 +126,30 @@ private headers = new Headers({'Content-Type': 'application/json','Access-Contro
             console.log(bodystring)
             console.log(headers);
 
-            //   let url = `${this._apiUrl2}/update/${1}`;
-            // let url = `${this._apiUrl2}/delete/${1}`;
-
-        //     return this._http.put(this._apiUrl2+'/delete',body,options)
-        //      .map((response: Response) => response.json())
-        // .catch(this.errorHandler);
-        
          return this._http
     .put(this._apiUrl2+'/update', bodystring, options)
     .toPromise()
     .then( response => response.json() as Avik)
     .catch(this.errorHandler);
+
+
+        }
+
+        uppdateraUF(ufavvikelse: Ufavik): Promise<Ufavik> {
+
+            console.log('LLLLLLLLLLLLLLLLL', ufavvikelse);
+             let headers = new Headers({'content-type': 'application/json', 'accept': 'application/json','Access-Control-Allow-Origin':'*'});
+            this.headers.append('Content-Type', 'application/json');
+            this.headers.append('Access-Control-Allow-Origin', '*');
+            let options = new RequestOptions({ headers: headers });
+
+            let bodystring = JSON.stringify(ufavvikelse);
+
+            return this._http
+                .put(this._apiUrlUF+'/update',bodystring, options)
+                .toPromise()
+                .then(response => response.json() as Ufavik)
+                .catch(this.errorHandler);
 
 
         }

@@ -16,7 +16,7 @@
   </tr>
  
     <tr>
-    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="pnr" [(ngModel)]="pnr"/></td>
+    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="yyyymmdd-xxxx" [(ngModel)]="pnr"/></td>
   </tr>
     <tr>
     <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" [(ngModel)]="fmid" /></td>
@@ -30,9 +30,18 @@
 <table class="table table-striped">
   <tr> 
     <th>FmId</th>
-    <th>Pnr</th> 
+    <th>Personnummer</th> 
     <th>Försäk Id</th>
+    <th>Felutfallstext</th>
     <th>Ing kap</th> 
+    <th>Utg kap</th> 
+    <th>Gar Pension</th> 
+    <th>Återbär Pen</th> 
+    <th>Återbet belopp</th> 
+    <th>Kostnad/I</th>
+    <th>K/I-typ</th>
+    <th>K/I-belopp</th>
+    <th>Kategori</th>
     <th>Status</th>   
     <th>Notering</th> 
 </tr>
@@ -41,9 +50,18 @@
  <td>{{u.fmId}}</td>
  <td>{{u.personnummer}}</td>
  <td>{{u.avtalsNummer}}</td>
+ <td>{{u.felutfall}}</td>
  <td>{{u.ingkap}}</td>
+ <td>{{u.utgKap}}</td>
+ <td>{{u.garPension}}</td>
+ <td>{{u.aterBarpension}}</td>
+ <td>{{u.aterBetbelopp}}</td>
+ <td>{{u.kostnadIntakt}}</td>
+ <td>{{u.kiTyp}}</td>
+ <td>{{u.kiBelopp}}</td>
+ <td>{{u.kategori}}</td>
  <td>{{u.status}}</td>
- <td>{{ (u.notering) ? u.notering.fel : 'finns ej'}}</td>
+ <td>{{ (u.notering) ? u.notering.noteringid : 'finns ej'}}</td>
 
 </tr>
 </table>
