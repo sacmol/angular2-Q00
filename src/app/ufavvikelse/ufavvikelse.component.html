@@ -4,9 +4,9 @@
 <table class="table table-striped">
   <tr>
     <th>Fmid</th>
-    <th>Per</th>
+    <th>Pnr</th>
     <th>Försäkr-id</th>
-    <th>Felutf</th>
+    <th>Felutfallstext</th>
     <th>Ing kap</th>
     <th>Utg kap</th>
     <th>Gar pension</th>
@@ -15,8 +15,8 @@
     <th>Kostnad /Intäkt</th>
     <th>K/I-typ</th>
     <th>K/I-belopp</th>
-    <!--<th>Kategori</th>
-    <th>Ansvarig</th>-->
+    <th>Kategori</th>
+    <th>Ansvarig</th>
     <th>Status</th>
 
   </tr>
@@ -41,13 +41,14 @@
     </select></td>-->
     <td><input type="text" class="form-control" value="{{ufavvikelse.status}}"  [(ngModel)]="ufavvikelse.status"/></td>
  </tr>
-{{ufavvikelse.status}}
 </table>
+<!--Kategori<input type="text" class="" value=""  /><br/>
+Status<input type="text" class="" value=""  />-->
 
 <h3>Notering</h3> 
 <div *ngIf="ufavvikelse.notering">
 
-  <textarea rows="10" cols="60" [(ngModel)]="ufavvikelse.notering.text">
+  <textarea rows="10" cols="150" [(ngModel)]="ufavvikelse.notering.text">
 
         {{ ufavvikelse.notering.text }}
 
@@ -58,7 +59,7 @@
 
 <div *ngIf="!ufavvikelse.notering">
 
-  <textarea rows="10" cols="60" [(ngModel)]="nyNot">
+  <textarea rows="10" cols="150" [(ngModel)]="nyNot">
 
      
 

@@ -5,28 +5,38 @@
 </h1>
 <section>
 
+
+ <form #sokUfForm="ngForm">
+   <div class="col-xs-7">
 <table class="table table-condensed">
     <tr>
-    <td>Bolag:</td><td><select class="form-control" [(ngModel)]="selectedBol">
+    <td>Bolag:</td><td><select class="form-control" id="bol" name="bol" [(ngModel)]="selectedBol">
         <option *ngFor="let b of bolag" [ngValue]="b">{{b.name}}</option>
     </select></td>
   </tr>
   <tr>
-    <td>Avstämningsperiod:</td><td><input type="text" class="form-control" placeholder="period" [(ngModel)]="period"/></td>
+    <td>Avstämningsperiod:</td><td><input type="text" #avper="ngModel" required minlength="6" maxlength="6" class="form-control" placeholder="period YYYYmm" id="period" name="period" [(ngModel)]="period" ngModel></td>
   </tr>
- 
+  
     <tr>
-    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="yyyymmdd-xxxx" [(ngModel)]="pnr"/></td>
+    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="yyyymmdd-xxxx" id="pnr" name="pnr" [(ngModel)]="pnr"></td>
   </tr>
     <tr>
-    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" [(ngModel)]="fmid" /></td>
+    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" id="fmid" name="fmid" [(ngModel)]="fmid" ></td>
   </tr>
 </table>
-<input type="submit" value="Sök" (click)="search(period,pnr,fmid,selectedBol)" class="btn btn-primary">
+   
+<input type="submit" [disabled]="!sokUfForm.form.valid" value="Sök" (click)="search(period,pnr,fmid,selectedBol)"  class="btn btn-primary">
+    <div *ngIf="avper.errors && avper.touched " class="alert alert-danger">
 
-
+      Period måste vara ifyllt 6 tecken
+    </div>
+   </div>
+ </form>
+<hr>
 <div *ngIf="ufavvikelser">
-  <h4>Svar Från DB ufav</h4>
+
+
 <table class="table table-striped">
   <tr> 
     <th>FmId</th>

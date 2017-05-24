@@ -4,6 +4,8 @@ import { Avik } from '../avik';
 
 import { Notering } from'../notering';
 
+
+
 import { Observable } from 'rxjs/Observable';
 
 import { DiffService } from '../diff/diff.service';
@@ -22,6 +24,7 @@ export class DiffavvikelseComponent implements OnInit {
   svarsmeddelande: string;
   id: any;
   constructor(private _diffService: DiffService, private _route: ActivatedRoute) { }
+
 
   getDiffAvvikelse(){
 

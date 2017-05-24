@@ -5,38 +5,36 @@
 </h1>
 
 <section>
-  
+  <form #sokDiffForm="ngForm">
+    <div class="col-xs-7">
 <table class="table table-condensed">
     <tr>
-    <td>Bolag:</td><td><select class="form-control" [(ngModel)]="selectedBol">
+    <td>Bolag:</td><td><select class="form-control" id="bol" name="bol" [(ngModel)]="selectedBol">
         <option *ngFor="let b of bolag" [ngValue]="b">{{b.name}}</option>
     </select></td>
   </tr>
     <tr>
-    <td>Avvikelsetyp:</td><td><select class="form-control" [(ngModel)]="selectedVal">
-        <option *ngFor="let at of avvikelseTyp" [value]="at">{{at}}</option>
-    </select></td>
-  </tr>
-
- 
   <tr>
-    <td>Avstämningsperiod:</td><td><input type="text" class="form-control" placeholder="period" [(ngModel)]="perioden"/></td>
+    <td>Avstämningsperiod:</td><td><input type="text" #avper="ngModel" (keypress)="onlyNumberKey($event)" required minlength="6" maxlength="6" class="form-control" placeholder="period YYYYmm" id="period" name="period" [(ngModel)]="perioden" ngModel></td>
   </tr>
  
     <tr>
-    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="pnr" [(ngModel)]="pnr"/></td>
+    <td>Pnr:</td><td><input type="text" class="form-control" placeholder="yyyymmdd-xxxx" id="pnr" name="pnr" [(ngModel)]="pnr"></td>
   </tr>
     <tr>
-    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" [(ngModel)]="fmid" /></td>
+    <td>Förmånsmapp:</td><td><input type="text" class="form-control" placeholder="förmånsmapp id" id="fmid" name="fmid" [(ngModel)]="fmid" ></td>
   </tr>
 </table>
-<input type="submit" value="Sök" (click)="search(perioden,pnr,fmid,selectedVal,selectedBol)" class="btn btn-primary">
-<!--<input type="submit" value="Sök" (click)="search()" class="btn btn-primary">-->
-{{testData}}
+<input type="submit" [disabled]="!sokDiffForm.form.valid" value="Sök" (click)="search(perioden,pnr,fmid,selectedBol)" class="btn btn-primary">
+  
+<div *ngIf="avper.errors && avper.touched" class="alert alert-danger">
 
+      Avstämningsperiod måste vara ifyllt 6 tecken
+</div>
+    </div>
+</form>
 <br/>
-<div *ngIf="avikIsValid">
-<h4>Svar Från DB</h4>
+<div *ngIf="aviks">
 
 <table class="table table-striped">
   <tr> 
@@ -73,30 +71,6 @@
  <td *ngIf="d && d.notering.fel">{{d.notering.fel}}</td>-->
  
   <!--<td>{{d.notering.fel}}</td>-->
-</tr>
-</table>
-</div>
-
-<div *ngIf="ufIsValid">
-  <h4>Svar Från DB uf</h4>
-<table class="table table-striped">
-  <tr> 
-    <th>FmId</th>
-    <th>Pnr</th> 
-    <th>Försäk Id</th>
-    <th>Ing kap</th> 
-    <th>Status</th>   
-    <th>Notering</th> 
-</tr>
-<tr *ngFor="let u of ufaviks; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" >
-
- <td>{{u.fmId}}</td>
- <td>{{u.personnummer}}</td>
- <td>{{u.avtalsNummer}}</td>
- <td>{{u.ingkap}}</td>
- <td>{{u.status}}</td>
- <td>{{ (u.notering) ? u.notering.fel : 'finns ej'}}</td>
-
 </tr>
 </table>
 </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 import {Http, Response, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
+
+// import { Validators } from '@angular/forms';
 
 import { DiffService } from '../diff/diff.service';
 
@@ -19,10 +21,14 @@ ufavvikelser: Ufavik[];
 ufavikelse: Ufavik;
 bolag: any = [{id:'1', name:'Folksam'}, {id:'2', name:'Folksam Tjänstemannapension'}, {id:'3', name:'Folksam LOFond'}];
 selectedBol = this.bolag[0];
+
+
   constructor(private _diffService: DiffService, private _router: Router) { }
 
   ngOnInit() {
+
   }
+
 
 search(period,pnr,fmid,selectedBol){
   console.log('QQAQQ',period,pnr,fmid,selectedBol);
